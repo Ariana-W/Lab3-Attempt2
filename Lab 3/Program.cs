@@ -10,51 +10,64 @@ namespace Lab_3
     {
         static void Main(string[] args)
         {
-            string format = " ";
-
-            Console.WriteLine("Please enter in an integer");
-            int userInput = int.Parse(Console.ReadLine());
-
-            Console.WriteLine("    Numbers        Square        Cube ");
-            Console.WriteLine("  ===========    ===========  ==========");
-
-          
-
-            for (int i = 1; i <= userInput; i++)
+            Boolean run = true;
+            while (run)
             {
-                
-                Console.WriteLine(i);
-            
-                int num = i * i;
-                string num1 = string.Format("{0,20}", num);
-                Console.WriteLine(num1);
+                string something = " ";
 
-                int numm = i * i * i;
-                string num2 = string.Format("{0,25}", numm);
+                Console.WriteLine("Please enter in an integer");
+                ulong userInput = ulong.Parse(Console.ReadLine());
 
-                Console.WriteLine(num2);
+                Console.WriteLine("    Numbers        Square        Cube ");
+                Console.WriteLine("  ===========    ===========  ==========");
 
-                format = "\n";
+                for (ulong i = 1; i <= userInput; i++)
+                {
+                    something += i;
+
+                    // Console.WriteLine(i);
+
+                    ulong num = i * i;
+                    something += string.Format("{0,20}", num);
+
+
+                    ulong numm = i * i * i;
+                    something += string.Format("{0,14}", numm);
+
+                    something += "\n";
+                }
+
+                Console.WriteLine(something);
+                Continue();
             }
-        
-            Console.WriteLine(format);
-
-            format += "0-------------------5-------------10-----------15" + "\n";
         }
 
-        //public static void Square(int userInput)
-        //{
-        //   int num = userInput * userInput;
-        //   string num1 = string.Format("{0,20 }", num);
-        //   Console.WriteLine(num1);        
-        //}
+        public static Boolean Continue()
 
-        //public static void Cube(int userInput)
-        //{
-        //    int num = userInput * userInput * userInput;
-        //    string num1 = string.Format("{0,36 }", num);
-        //    Console.WriteLine(num1);
-        //}
+        {
+            bool run = true;
+
+            Console.WriteLine("Would you like to continue? Yes or No? ");
+            string userInput = Console.ReadLine().ToLower().Trim();
+
+            if (userInput == "yes" || userInput == "y")
+            {
+                run = true;
+            }
+            if (userInput == "no" || userInput == "n")
+            {
+                run = false;
+                Console.WriteLine("Thanks for chilling with us!");
+            }
+
+            if (userInput != "yes" && userInput != "no")
+            {
+                Console.WriteLine("You entered in a wrong value. Please try again");
+                run = Continue();
+            }
+
+            return run;
+        }
 
     }
 
